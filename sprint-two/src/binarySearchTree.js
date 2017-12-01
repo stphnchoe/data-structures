@@ -27,10 +27,32 @@ methodsBST.insert = function(value) {
   }
 };
 
-methodsBST.contains = function() {
+methodsBST.contains = function(target) {
+  if (this.value === target) {
+    return true;
+  }
+  if (this.value < target) {
+    if (this.right === null) {
+      return false;
+    }
+    return this.right.contains(target);
+  }
+  if (this.value > target) {
+    if (this.left === null) {
+      return false;
+    }
+    return this.left.contains(target);
+  }
 };
 
-methodsBST.depthFirstLog = function() {
+methodsBST.depthFirstLog = function(callback) {
+  callback(this.value);
+  if (this.left !== null) {
+    this.left.depthFirstLog(callback);  
+  }
+  if (this.right !== null) {
+    this.right.depthFirstLog(callback);
+  }
 };
 
 /*
