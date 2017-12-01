@@ -15,20 +15,15 @@ treeMethods.addChild = function(value) {
 };
 
 treeMethods.contains = function(target) {
-  var contained = false;
 
-  var recursiveContain = function() {
 
-    if (this.value === target) {
-      contained = true;
-      return contained;
-    }
-debugger;
-    for (var i = 0; i < this.children.length; i++) {
-      this.children[i].recursiveContain();
-    }
-  }();
-  return contained;
+  if (this.value === target) {
+    return true;
+  }
+  for (var i = 0; i < this.children.length; i++) {
+    return this.children[i].contains(target);
+  }
+  return false;
 };
 
 
